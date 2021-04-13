@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 public class Product {
     /**
@@ -55,5 +56,29 @@ public class Product {
 
     public Product applyRating(Rating newRating) {
         return new Product(this.id, this.name, this.price, newRating);
+    }
+
+    @Override
+    public String toString() {
+        return "Id:" + id + ", Name: " + name + ", Price: " + price + ", Discount: " + ", Rating: " + rating.getStars();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Product) {
+            final Product other = (Product) obj;
+            return this.id == other.id && Objects.equals(this.name, other.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + this.id;
+        return hash;
     }
 }

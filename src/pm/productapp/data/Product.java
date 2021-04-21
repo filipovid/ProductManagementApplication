@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class Product implements Rateable<Product> {
     /**
      * A constant that defines a {@link java.math.BigDecimal BigDecimal} value of the discount rate
      * Discount rate is 10%
@@ -32,7 +32,7 @@ public abstract class Product {
 //        this(0, "no name", BigDecimal.ZERO, Rating.NOT_RATED);
 //    }
 
-    // Getters & Setters
+    // Getters
     public int getId() {
         return id;
     }
@@ -45,6 +45,7 @@ public abstract class Product {
         return price;
     }
 
+    @Override
     public Rating getRating() {
         return this.rating;
     }
@@ -64,13 +65,6 @@ public abstract class Product {
     public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, RoundingMode.HALF_UP);
     }
-
-    /**
-     * Abstract method that will be redefined in the child class
-     * @param newRating - argument that will have to be produced in the method call
-     * @return
-     */
-    public abstract Product applyRating(Rating newRating);
 
     @Override
     public String toString() {

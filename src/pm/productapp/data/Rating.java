@@ -1,3 +1,5 @@
+package pm.productapp.data;
+
 public enum Rating {
 
     NOT_RATED("\u2606\u2606\u2606\u2606\u2606"),
